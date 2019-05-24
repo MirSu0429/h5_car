@@ -88,7 +88,8 @@ function changeDateFormat(cellval) {
 }
 
 function refresh() {
-    $("#tableData").bootstrapTable("refresh")
+    $("#tableData").bootstrapTable("refresh");
+    refreshCounts();
 }
 
 function query() {
@@ -133,6 +134,10 @@ function editViewById(id) {
 }
 
 $(function () {
+    refreshCounts();
+})
+
+function refreshCounts() {
     $.ajax({
         url: '/registerInfo/getCounts',
         type: 'GET',
@@ -149,4 +154,4 @@ $(function () {
             $("#comeCounts").text(date)
         }
     })
-})
+}
