@@ -328,17 +328,14 @@ function getTime() {
                 contentType: 'application/json; charset=UTF-8',
                 success: function (response) {
                     if (response.flag == true) {
+                        msg("别忘了点击右上角分享哦")
                         refreshCounts();
-                    } else {
-                        $('#dateForm').bootstrapValidator('disableSubmitButtons', false);
-                        //form.bootstrapValidator('disableSubmitButtons', false);
-                        if (response.error == 1000) { // 后台接口如果返回error=1000表示name错误
-                            form.data('bootstrapValidator').updateStatus('username', 'INVALID', 'callback');
-                        } else if (response.error == 1001) { // 后台接口如果返回error=1001表示密码错误
-                            form.data('bootstrapValidator').updateStatus('password', 'INVALID', 'callback');
-                        }
+                        $("#carType").val("");
+                        $("#carNumber").val("");
+                        $("#name").val("");
+                        $("#tel").val("");
+                        $('#dateForm').data('bootstrapValidator').resetForm();
                     }
-                    $('#dateForm').data('bootstrapValidator').resetForm();
                 }
             });
         }
@@ -352,6 +349,12 @@ function getTime() {
             indexed_array[n['name']] = n['value'];
         });
         return indexed_array;
+    }
+    function msg(msg) {
+        layer.msg(msg, {
+            time: 2000, //2s后自动关闭
+            icon: 1,
+        });
     }
 </script>
 

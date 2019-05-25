@@ -80,10 +80,12 @@ public class RegisterInfoController {
     @GetMapping("/queryAllRegister")
     private List<RegisterInfoEntity> queryAllRegister(@RequestParam("key") String key) {
         loger.info("开始查询.传入参数为:--->key:->" + key);
+
         Wrapper<RegisterInfoEntity> wrapper = new EntityWrapper<>();
         if (key != null) {
             wrapper.like("name", key).or().like("tel", key).or().like("car_number", key);
         }
+        wrapper.orderBy("is_come", false).orderBy("create_time", false);
         List<RegisterInfoEntity> selectList = iRegisterInfoService.selectList(wrapper);
         loger.info("查询结果为:selectList--->" + selectList.toString());
         return selectList;
