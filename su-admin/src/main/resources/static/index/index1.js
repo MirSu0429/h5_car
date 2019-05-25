@@ -72,6 +72,30 @@ $(function () {
         },
     })
 })
+function getTime() {
+    $.ajax({
+        url: '/registerInfo/getTime',
+        type: 'GET',
+        date: {},
+        success: function (date) {
+            var startTime = changeDateFormat2(date.startTime);
+            var endTime = changeDateFormat2(date.endTime);
+            $("#startTime").val(startTime);
+            $("#endTime").val(endTime);
+        }
+    });
+}
+function changeDateFormat2(cellval) {
+        if (cellval != null) {
+            var date = new Date(cellval);
+            var month = date.getMonth() + 1 < 10 ? "0" + (date.getMonth() + 1) : date.getMonth() + 1;
+            var currentDate = date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
+            var hours = date.getHours() < 10 ? "0" + date.getHours() : date.getHours();
+            var minutes = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
+            var seconds = date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds();
+            return date.getFullYear() + "-" + month + "-" + currentDate;
+        }
+    }
 
 function changeDateFormat(cellval) {
     if (cellval != null) {
@@ -90,6 +114,7 @@ function changeDateFormat(cellval) {
 function refresh() {
     $("#tableData").bootstrapTable("refresh");
     refreshCounts();
+    getTime()
 }
 
 function query() {
@@ -126,7 +151,7 @@ function editViewById(id) {
         contentType: 'application/json; charset=UTF-8',
         success: function (data) {
             if (data.flag == true) {
-                layer.msg("修改成功")
+                msg("修改成功");
                 refresh();
             }
         }
@@ -135,6 +160,7 @@ function editViewById(id) {
 
 $(function () {
     refreshCounts();
+    getTime()
 })
 
 function refreshCounts() {
@@ -154,4 +180,11 @@ function refreshCounts() {
             $("#comeCounts").text(date)
         }
     })
+}
+
+function msg(msg) {
+    layer.msg(msg, {
+        time: 2000, //2s后自动关闭
+        icon: 1,
+    });
 }

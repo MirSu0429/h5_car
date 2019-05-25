@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.annotations.TableName;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * @Author: supengfei
@@ -25,6 +26,10 @@ public class ShopEntity extends Model<ShopEntity> {
     private String shopAddress;
     @TableId(value = "shop_manager")
     private String shopManager;
+    @TableId(value = "start_time")
+    private Date startTime;
+    @TableId(value = "end_time")
+    private Date endTime;
     @Override
     protected Serializable pkVal() {
         return this.id;

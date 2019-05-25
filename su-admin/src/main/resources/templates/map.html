@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>亚晨周年庆</title>
+    <style type="text/css">
+        *{
+            margin:0px;
+            padding:0px;
+        }
+        body, button, input, select, textarea {
+            font: 12px/16px Verdana, Helvetica, Arial, sans-serif;
+        }
+        #container{
+            min-width:600px;
+            min-height:767px;
+        }
+    </style>
+
+    <!-- 腾讯获取坐标需要引入的 -->
+    <script type="text/javascript" src="../static/js/txmap/tx.js"></script>
+    <!-- 腾讯地图显示需要引入的 -->
+    <script charset="utf-8" src="../static/js/txmap/qqapi.js"></script>
+</head>
+<body onload="coordinate()">
+<div id="container"></div>
+</body>
+</html>
+<script type="text/javascript">
+
+    var cityLocation, map, marker = null;
+
+    /**
+     方法和参数说明===========================================================
+     *   qq.maps.Geolocation(key, referer) 参数(官网提供)：
+     *       key ： 必填，开发密钥(key)，申请地址 http://lbs.qq.com/mykey.html; HVUBZ-CPQC4-4SBU5-DSIZG-XECU2-4SF5I
+     *       referer： 必填，调用来源，一般为您的应用名称，为了保障对您的服务，请务必填写！亚晨周年庆
+     *                 例如：referer=mapqq为了保障对您的服务，请务必填写！
+     *
+     *    sucCallback:定位成功的回调;
+     *
+     *    showErr:定位失败的回调;
+     *          options为定位选项，选填;
+     *          timeout:可以通过参数设置定位的超时时间，默认值为10s;
+     *          代码实现部分===========================================================
+     */
+
+    /**用腾讯获取坐标**/
+    function coordinate(){
+        var geolocation = new qq.maps.Geolocation("HVUBZ-CPQC4-4SBU5-DSIZG-XECU2-4SF5I", "亚晨周年庆_手机端");
+
+        var options = {timeout: 8000};
+
+        geolocation.getLocation(sucCallback, showErr, options);
+    }
+
+    //定位成功回调
+    function sucCallback(position){
+        var mapInfo = JSON.stringify(position, null, 4);
+        var jsonMapInfo = eval('('+mapInfo+')');
+        //alert("腾讯经度为:"+jsonMapInfo.lng+",腾讯纬度为:"+jsonMapInfo.lat);
+        init();
+        var latLng = new qq.maps.LatLng(jsonMapInfo.lat, jsonMapInfo.lng);
+        citylocation.searchCityByLatLng(latLng);
+    }
+
+    //定位失败回调
+    function showErr(){
+        alert("定位失败");
+    }
+
+    //初始化地图
+    function init(){
+        var center = new qq.maps.LatLng(34.191722,112.839305);//设置中心点
+        map = new qq.maps.Map(document.getElementById('container'),{//container:放置地图div的id属性
+            center: center,
+            zoom: 30	//地图缩放级别
+        });
+        //调用城市服务信息
+        citylocation = new qq.maps.CityService({
+            complete : function(results){
+                map.setCenter(results.detail.latLng);
+                if (marker != null) {
+                    marker.setMap(null);
+                }
+                //设置marker标记
+                marker = new qq.maps.Marker({
+                    map: map,
+                    position: results.detail.latLng
+                });
+            }
+        });
+    }
+</script>

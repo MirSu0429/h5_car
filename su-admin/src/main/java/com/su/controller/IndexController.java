@@ -1,6 +1,7 @@
 package com.su.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -11,15 +12,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class IndexController {
 
-    @RequestMapping("/app")
+    @GetMapping ("/app")
     public String index() {
         return "index1";
     }
-    @RequestMapping("/")
+    @GetMapping("/")
     public String home() {
         return "home";
     }
-    @RequestMapping("/map")
+    @GetMapping("/map")
     public String map() {
         return "map";
     }

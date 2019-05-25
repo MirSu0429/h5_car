@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta name="HandheldFriendly" content="true">
     <meta name="msapplication-tap-highlight" content="no">
-    <title>亚晨猎豹六周年店庆放大招</title>
+    <title>【汝州亚晨猎豹4s店】车载收纳箱免费送  </title>
     <link rel="stylesheet" href="/static/css/bootstrap.min.css">
     <link rel="stylesheet" href="/static/css/bootstrap-table.min.css">
     <link rel="stylesheet" href="/static/css/bootstrapValidator.css"/>
@@ -81,6 +81,7 @@
     </dev>
     <form class="form-horizontal" role="form" id="dateForm">
         <div class="form-group">
+            <input type="hidden" id="shopId" value="1">
             <label for="name" class="col-xs-3 control-label right" >姓&emsp;&emsp;名*</label>
             <div class="col-xs-8">
                 <input type="text" class="form-control" id="name" name="name" placeholder="请输入姓名">
@@ -104,9 +105,17 @@
                 <input type="text" class="form-control" id="carNumber" name="carNumber" value="豫D" placeholder="请输入车牌号">
             </div>
         </div>
-        <div class="form-group  ">
-            <div class="">
-                <button type="submit" class="btn btn-default" id="submit" onclick="submitDate()">分享并领取</button>
+        <div class="form-group  " style="margin-left: 10px;margin-right: 10px">
+            <div >
+                <button type="submit" class="btn btn-success btn-block" id="submit" onclick="submitDate()">
+                    点击右上角分享并领取</button>
+            </div>
+        </div>
+        <div class="form-group  " style="margin-left: 70px;margin-right: 70px">
+            <div >
+                <button type="submit" class="btn btn-danger btn-block" id="date" >
+                    活动时间【<span id="showStartTime"></span>--<span id="endStartTime"></span>】
+                </button>
             </div>
         </div>
     </form>
@@ -123,10 +132,31 @@
     $(function () {
         refreshCounts();
         validator();
-        //setTimeout(refreshCounts(), 1000);
     })
 
-    function loadDate() {
+    function compareDate(startTime,endTime) {
+        var dateTime = new Date();
+        startTime = new Date(dateTime.getFullYear()+"."+startTime)
+        endTime = new Date(dateTime.getFullYear()+"."+endTime)
+        if (dateTime.getTime() < startTime.getTime() ) {
+            $("#submit").attr("disabled", "true");
+            $("#carNumber").attr("disabled", "true");
+            $("#name").attr("disabled", "true");
+            $("#tel").attr("disabled", "true");
+            $("#carType").attr("disabled", "true");
+            $("#submit").css("background-color", "#6f6e61");
+            $("#submit").text("活动未开始");
+        } else if (dateTime.getTime() > endTime.getTime()) {
+            $("#submit").attr("disabled", "true");
+            $("#carNumber").attr("disabled", "true");
+            $("#name").attr("disabled", "true");
+            $("#tel").attr("disabled", "true");
+            $("#carType").attr("disabled", "true");
+            $("#submit").css("background-color", "#6f6e61");
+            $("#submit").text("活动已结束");
+        }
+    }
+    function loadData() {
         $("#tableItem").bootstrapTable({
             url: "/registerInfo/app/queryAllRegister",
             clickToSelect: true,    	//是否启用点击选中行
@@ -162,7 +192,8 @@
                         }
                     }
                 }
-            ]
+            ],
+
         })
     }
 
@@ -177,6 +208,17 @@
             return month + "-" + currentDate + " " + hours + ":" + minutes;
         }
     }
+    function changeDateFormat2(cellval) {
+        if (cellval != null) {
+            var date = new Date(cellval);
+            var month = date.getMonth() + 1 < 10 ? "0" + (date.getMonth() + 1) : date.getMonth() + 1;
+            var currentDate = date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
+            var hours = date.getHours() < 10 ? "0" + date.getHours() : date.getHours();
+            var minutes = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
+            var seconds = date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds();
+            return month + "." + currentDate ;
+        }
+    }
 
     function refreshCounts() {
         $.ajax({
@@ -188,9 +230,24 @@
             }
 
         })
-        loadDate();
+        loadData();
+        getTime();
     }
+function getTime() {
+    $.ajax({
+        url: '/registerInfo/getTime',
+        type: 'GET',
+        date: {},
+        success: function (date) {
+            var startTime = changeDateFormat2(date.startTime);
+            var endTime = changeDateFormat2(date.endTime);
+            $("#showStartTime").text(startTime);
+            $("#endStartTime").text(endTime);
+            compareDate(startTime, endTime);
+        }
 
+    })
+}
     function validator() {
         $("#dateForm").bootstrapValidator({
 //		提示的图标
@@ -297,3 +354,73 @@
         return indexed_array;
     }
 </script>
+
+
+<!--wx3a6b2307642586af-->
+<!--
+<script type="text/javascript" src="../static/js/txmap/jweixin-1.2.0.js" ></script>
+<script type="text/javascript">
+    var imgUrl = '../static/image/home.png';
+    var lineLink = 'localhost/';
+    var descContent = '到店即可免费领取收纳箱、免费发动机清洗、免费氟利昂。购新车可享受五年免费保养、免购置税、免保险、免上牌，更有10吨汽油免费送！';
+    var shareTitle = '【汝州亚晨猎豹4s店】车载收纳箱免费送';
+    var appid = '';
+
+    $.ajax({
+        type : 'POST',
+        url :  "http://dev.mymax.cn/running/comm/weixin/open/jsSDKConfig", //这个地址并非通用且长期有效，请去微信官方查看文档，并自行配置
+        dataType : "json",
+        data:{url:window.location.href},
+        success : function(response){
+            var appId = response.s.appId;
+            var timestamp = response.s.timeStamp;
+            var nonceStr = response.s.nonceStr;
+            var signature = response.s.signature;
+
+            wx.config({
+                debug: false,
+                appId: appId,
+                timestamp: timestamp,
+                nonceStr: nonceStr,
+                signature: signature,
+                jsApiList: [
+                    'checkJsApi',
+                    'onMenuShareTimeline',
+                    'onMenuShareAppMessage'
+                ]
+            });
+            wx.ready(function() {
+
+                wx.onMenuShareTimeline({
+                    title: shareTitle, // 分享标题
+                    link: lineLink, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+                    imgUrl: imgUrl, // 分享图标
+                    success: function () {
+                        // 用户确认分享后执行的回调函数
+                    },
+                    cancel: function () {
+                        // 用户取消分享后执行的回调函数
+                    }
+                });
+                wx.onMenuShareAppMessage({
+                    title: shareTitle, // 分享标题
+                    desc: descContent, // 分享描述
+                    link: lineLink, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+                    imgUrl: imgUrl, // 分享图标
+                    type: '', // 分享类型,music、video或link，不填默认为link
+                    dataUrl:'' , // 如果type是music或video，则要提供数据链接，默认为空
+                    success: function () {
+                        // 用户确认分享后执行的回调函数
+
+                    },
+                    cancel: function () {
+                        // 用户取消分享后执行的回调函数
+                    }
+                });
+            });
+        },
+        error:function(response){
+           // window.parent.growl("删除失败["+response.responseText+"]!","error");
+        }
+    });
+</script>-->
