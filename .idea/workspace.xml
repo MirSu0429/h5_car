@@ -1,16 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e6074fc0-366e-4168-97dc-2efe467156e0" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/su-activemq/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/su-activemq/src/main/java/com/su/config/ActiveMQConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/su-activemq/src/main/resources/application-activemq.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/su-admin/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/su-admin/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/su-p/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/su-p/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/su-p/src/main/resources/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/su-p/src/test/java/com/su/SuPApplicationTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/su-p/su-p.iml" beforeDir="false" afterPath="$PROJECT_DIR$/su-p/su-p.iml" afterDir="false" />
-    </list>
+    <list default="true" id="e6074fc0-366e-4168-97dc-2efe467156e0" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,6 +27,39 @@
         </counts>
       </usages-collector>
     </session>
+    <session id="-1710097322">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="1" />
+          <entry key="project.open.time.0" value="1" />
+          <entry key="project.opened" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="xml" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="XML" value="2" />
+        </counts>
+      </usages-collector>
+    </session>
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/su-core-min/pom.xml">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/su-p/pom.xml">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -54,10 +78,10 @@
       </MavenGeneralSettings>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1936" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-9" />
+    <option name="y" value="-9" />
+    <option name="width" value="1937" />
     <option name="height" value="1056" />
   </component>
   <component name="ProjectView">
@@ -65,19 +89,29 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="su-parent" type="b2602c69:ProjectViewProjectNode" />
-              <item name="su-parent" type="462c0819:PsiDirectoryNode" />
+              <item name="h5_car" type="b2602c69:ProjectViewProjectNode" />
+              <item name="h5_car" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="h5_car" type="b2602c69:ProjectViewProjectNode" />
+              <item name="h5_car" type="462c0819:PsiDirectoryNode" />
+              <item name="su-core-min" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="h5_car" type="b2602c69:ProjectViewProjectNode" />
+              <item name="h5_car" type="462c0819:PsiDirectoryNode" />
+              <item name="su-p" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -115,16 +149,17 @@
       <updated>1549983098357</updated>
       <workItem from="1549983099617" duration="28000" />
       <workItem from="1558361145436" duration="25000" />
+      <workItem from="1573992837240" duration="61000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="53000" />
+    <option name="totallyTimeSpent" value="114000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="0" />
+    <frame x="-7" y="-7" width="1455" height="935" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25266525" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2226199" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="JRebel" order="2" side_tool="true" />
       <window_info id="Image Layers" order="3" />
@@ -160,6 +195,14 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/su-core-min/pom.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/su-p/pom.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
   </component>
   <component name="masterDetails">
     <states>
